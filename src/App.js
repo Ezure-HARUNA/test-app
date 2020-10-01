@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useReducer, useContext } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 // import About from '../components/About'
 import Want from './componnets/Want'
 import ThisWeek from './componnets/ThisWeek'
-import reducer from '../reducers'
+import reducer from './reducers/nextToWeek'
+import AppContext from './contexts/AppContext'
 
 const App = () => {
   
@@ -24,7 +25,7 @@ const App = () => {
         <Route path='/wanttodo' render={(props) => <Want id={id} setId={setId}></Want>}></Route>
         <Route path='/thisweek' render={(props) => <ThisWeek id={id} setId={setId}></ThisWeek>}></Route>
       </BrowserRouter>
-    <AppContext.Provider/>   
+    </AppContext.Provider>   
   )
 }
 
