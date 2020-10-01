@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 // import About from '../components/About'
 import Want from './componnets/Want'

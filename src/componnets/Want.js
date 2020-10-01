@@ -1,19 +1,18 @@
-import React, { useContext, useState, useReducer } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import reducer from '../reducers/nextToWeek'
 import AppContext from '../contexts/AppContext'
 import { FOLLOW_TO_TASK_THIS_WEEK } from '../actions/actions'
 
 const Want = (props) => {
 
-const { state, dispatch } = useContext(AppContext);
+const {  dispatch } = useContext(AppContext);
 const [task, setTask] = useState('');
 
   const handleId= (e)=>{
     e.preventDefault()
     props.setId(props.id)
   }
-    const nextToPage1= (e)=>{
+    const nextToPage1 = e =>{
         e.preventDefault()
         dispatch({
           type: 'FOLLOW_TO_TASK_THIS_WEEK',

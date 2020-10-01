@@ -4,7 +4,7 @@ import AppContext from '../contexts/AppContext'
 
 
 const ThisWeek = ({stack}) => {
-  // const { state, dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const taskId = stack.taskId
     return (
         <React.Fragment>
