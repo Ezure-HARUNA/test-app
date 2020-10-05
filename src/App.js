@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useContext, useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 // import About from '../components/About'
 import Want from './componnets/Want'
@@ -9,7 +9,9 @@ import AppContext from './contexts/AppContext'
 const App = () => {
   
   const [id, setId] =React.useState("")
+  
   const [state, dispatch] = useReducer(reducer, [])
+  
 
   // やりたいことリストの番号
   // const [taskId, setTaskId] =React.useState("")
