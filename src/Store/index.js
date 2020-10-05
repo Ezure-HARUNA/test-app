@@ -22,7 +22,7 @@ const reducer = (state, action) => {
   }
 }
 
-export const SiteContext = React.createContext();
+export const Store = React.createContext();
 
 const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
