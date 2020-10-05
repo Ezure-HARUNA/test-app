@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import Store from '../Store/index'
 
 const initialState = {
   task: [], 
