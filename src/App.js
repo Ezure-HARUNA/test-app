@@ -1,9 +1,9 @@
-import React, { useReducer, useContext, useEffect } from 'react'
+import React, { useReducer} from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 // import About from '../components/About'
 import Want from './componnets/Want'
 import ThisWeek from './componnets/ThisWeek'
-import reducer from './reducers/nextToWeek'
+import reducer from './Store/index'
 import AppContext from './contexts/AppContext'
 
 const App = () => {

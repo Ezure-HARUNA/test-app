@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react'
+import Store from '../Store/index'
 
 const initialState = {
   task: [], 
@@ -21,16 +22,13 @@ const reducer = (state, action) => {
   }
 }
 
-export const Store = createContext({
-  globalState: initialState,
-  setGlobalState: () => null
-})
+export const SiteContext = React.createContext();
 
 const StoreProvider = ({ children }) => {
-  const [globalState, setGlobalState] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-      <Store.Provider value={{ globalState, setGlobalState }}>{children}</Store.Provider>
+      <Store.Provider value={{ state, dispatch }}>{children}</Store.Provider>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import AppContext from '../contexts/AppContext'
 // import { FOLLOW_TO_TASK_THIS_WEEK } from '../actions/actions'
@@ -6,7 +6,8 @@ import Store from '../Store/index'
 
 const Want = (props) => {
 
-const { globalState, setGlobalState} = useContext(Store);
+const {state, dispatch } = useContext(Store);
+
 // const [task, setTask] = useState('');
 
   const handleId= (e)=>{
@@ -15,17 +16,16 @@ const { globalState, setGlobalState} = useContext(Store);
   }
     const nextToPage1 = e =>{
         // e.preventDefault()
-        setGlobalState({
-          type: 'FOLLOW_TO_TASK_THIS_WEEK',
-          task
+        dispatch({
+          type: 'FOLLOW_TO_TASK_THIS_WEEK'
         })
-        setTask('')
+        state.task('')
         props.setId(e.target.value)
     }
    
   return (
     <React.Fragment>
-        <input type="text" value={{task}} onChange={e => setTask(e.target.value)}></input>
+        <input type="text" value="タスク入れてね" onChange={e => state.task(e.target.value)}></input>
         <Link className="link" onClick={(e)=>{handleId(e)}} to='/thisweek'>
           <button onClick={(e)=>{nextToPage1(e)}}>今週やることに続く</button>
         </Link>
