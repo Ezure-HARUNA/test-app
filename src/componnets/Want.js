@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 // import { FOLLOW_TO_TASK_THIS_WEEK } from '../actions/actions'
 import Store from '../Store/index'
 
+console.log({Store})
+
 const Want = (props) => {
 
 const {state, dispatch } = useContext(Store);
@@ -17,9 +19,10 @@ const {state, dispatch } = useContext(Store);
     const nextToPage1 = e =>{
         // e.preventDefault()
         dispatch({
-          type: 'FOLLOW_TO_TASK_THIS_WEEK'
+          type: 'FOLLOW_TO_TASK_THIS_WEEK',
+          
         })
-        state.task('')
+        task('')
         props.setId(e.target.value)
     }
    
