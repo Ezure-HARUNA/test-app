@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import AppContext from '../contexts/AppContext'
 // import { FOLLOW_TO_TASK_THIS_WEEK } from '../actions/actions'
-import Store from '../Store/index'
+import {Store} from '../Store/index'
 
 console.log({Store})
 

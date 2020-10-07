@@ -24,7 +24,12 @@ const App = () => {
   return (
     <AppContext.Provider value={{ state, dispatch}}>
       <BrowserRouter>
-        <Route path='/wanttodo' render={(props) => <Want id={id} setId={setId}></Want>}></Route>
+      <Router
+        renderLoading={() => <Loading />}
+        renderTodos={() => <Want />}
+        renderLogin={() => <Login />}
+      />
+        {/* <Route path='/wanttodo' render={(props) => <Want id={id} setId={setId}></Want>}></Route> */}
         <Route path='/thisweek' render={(props) => <ThisWeek id={id} setId={setId}></ThisWeek>}></Route>
       </BrowserRouter>
     </AppContext.Provider>   
