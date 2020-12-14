@@ -1,38 +1,45 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: バグの修正
+title: "#1 fix:title"
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+---
+name: バグ報告
+about: バグ改善のための報告issue
+title: '#1 fix:title'
+labels: 'bug'
+assignees: 'Haruna-EZURE'
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+---
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+---
+name: バグ報告
+about: バグ改善のための報告issue
+---
+# Bug report
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## 今はどんな不具合が出る?
+例: ヘルプのフローティングアイコンが見切れてる
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## 不具合の再現方法
+例: スマートフォンからトップページにアクセスする
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## どう動作すると正しい?
+例: トップページにアクセスするとヘルプのフローティングアイコンが画面の右下に表示される。
 
-**Additional context**
-Add any other context about the problem here.
+## 仮説のアウトライン
+- [ ] アウトライン
+- [ ] アウトライン
+- [ ] アウトライン
+- [ ] アウトライン
+
+## 参考情報
+
+Node.js version: 
+NPM/Yarn version
+Operating System: 
+Additional tools:
