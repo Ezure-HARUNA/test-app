@@ -3,18 +3,30 @@ import Form from './Form'
 import Task from './Task'
 import firebase from 'firebase';
 import "firebase/auth";
-import {firebaseConfig} from '../src/utils/firebase'
+import { initializeApp } from '../src/utils/firebase'
+import Progress from './Progress'
+import { firestore } from 'firebase/app';
 
-firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth()
-export const db = firebase.firestore()
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+
+// firebase.initializeApp(initializeApp);
+// export const auth = firebase.auth()
+// export const db = firebase.firestore()
 
 const App = () => {
+
+  const query = firestore().collection('wants').orderBy('updatedAt', 'desc')
+
+  const [wants = [], loading] = useCollectionData(query, { docId: 'id' })
   
   return (
     <div>
       <Form/>
-      <Task/>
+      {/* <Task/> */}
+      {wants.map((want) => (
+        <Task key={want.id} want={want} />
+      ))}
+      {loading && <Progress />}
     </div>
   )
 }

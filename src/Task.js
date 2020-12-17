@@ -4,7 +4,8 @@ import {
   ListItem,
   ListItemSecondaryAction,
   Divider,
-  List
+  List,
+  Typography
 } from '@material-ui/core'
 import styled from 'styled-components'
 import { firestore } from 'firebase/app'
@@ -36,7 +37,7 @@ const Text = styled(ListItemText)`
   }
 `
 
-const Task = () => {
+const Task = ({ want }) => {
 
   const [wants, setWants] = useState([])
   const [getWant, loading] = useGetWant()
@@ -48,40 +49,16 @@ const Task = () => {
 
   return (
     <div>
-       {wants.length === 0 ? (
-        <EmptyMessage>No wants...</EmptyMessage>
-      ) : (
+      
         <List>
-          {wants.map(want => (
-            <Fragment key={`${want.docId}--fragment`}>
-              <ListItem key={`${want.docId}--list`}>
-                {/* <Checkbox
-                  checked={want.isComplete}
-                  onClick={() => {
-                    update({
-                      docId: want.docId,
-                      text: want.text,
-                      isComplete: !want.isComplete,
-                    })
-                  }}
-                /> */}
-                <Text primary={want.text} completed={want.isComplete} />
-                <ListItemSecondaryAction>
-                  {/* <Button
-                    color="default"
-                    onClick={() => {
-                      remove({ docId: want.docId })
-                    }}
-                  >
-                    Delete
-                  </Button> */}
-                </ListItemSecondaryAction>
-              </ListItem>
-              <Divider key={`${want.docId}--divider`} />
-            </Fragment>
-          ))}
+           <Typography variant={'h6'}>
+            {`${want.text} `}
+          </Typography>
+          <Typography variant={'caption'}>
+            {want.updatedAt.toLocaleString()}
+          </Typography>
         </List>
-      )}
+      
     </div>
   )
 }
