@@ -29,12 +29,13 @@ const Form = () => {
     }
 
     const handleClick = (e) => {
+      // createWant({text: text.value} )
       createWant({text: text.value} )
       // myContext.setWantTodo(e.target.value)
     }
 
     return (
-        <div>
+      <form onSubmit={(e) => e.preventDefault()}>
           <StyledTextField
             value={text}
             label="やること" 
@@ -46,7 +47,7 @@ const Form = () => {
             <AddButton color="primary" onClick={handleClick}>
                 Add
             </AddButton>
-        </div>
+        </form>
     )
 }
 

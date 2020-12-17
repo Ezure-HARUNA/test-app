@@ -1,12 +1,14 @@
 import { firestore } from 'firebase/app'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useContext } from 'react'
+// import { AuthContext } from '../contexts/auth'
 
 export const useCreateWant = () => {
   const [loading, setLoading] = useState(false)
   const [want, setWant] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null)
+//   const  currentUser  = useContext(AuthContext)
 
-  const createWant = async ({ text, description, purpose, rewards, category }) => {
+
+  const createWant = async ({ text, updatedAt, createdAt, isComplete, description, purpose, rewards, category }) => {
     if (loading) return
 
     setLoading(true)
@@ -26,9 +28,16 @@ export const useCreateWant = () => {
     console.log(result)
     console.log(result.data())
     console.log(docId)
-
+    console.log(text)
+    //undefined
+   console.log(updatedAt)
+   //undefined
+   console.log(isComplete)
+   //undefined
+   console.log(purpose)
+   console.log(wantRef)
     // const wantRef = useMemo(() => {
-    //   const col = db.collection('want').doc()
+    //   const col = firestore().collection('wants').doc()
   
     //   col.where('uid', '==', currentUser.uid).onSnapshot(query => {
     //     const data = []
@@ -39,41 +48,36 @@ export const useCreateWant = () => {
     //   return col
     // }, [])
 
+    
+
     //コメントアウト
     // wantRef.where('uid', '==', currentUser.uid).onSnapshot(query => {
     //   const data = []
     //   query.forEach(d => data.push({ ...d.data(), docId: d.id }))
     //   setWant(data)
     // })
+
+
     //データを追加
     await wantRef.set({
-    docId: docId,
+    // docId: docId,
+    docId: "docId",
     //   createdAt: now,
-    //   updatedAt: now,
+      updatedAt: now,
     // test:'test'
-    text: text,
-    isComplete: false,
+    text: "text",
+    // isComplete: false,
+    isComplete: "isComplete",
     // purpose: purpose,
+    purpose: "purpose",
     // rewards: rewards,
+    rewards: "rewards",
     // category: category,
     })
 
-    
-
-    // //レスポンスを追加する
-    // const Ref = threadRef.collection('responses').doc()
-
-    // //!➁データを追加
-    // await responseRef.set({
-    //   createdAt: now,
-    //   updatedAt: now,
-    //   threadId: threadRef.id,
-    //   username,
-    //   text,
-    // })
-
     setLoading(false)
-    return result.data()
+
+    // return result.data()
   }
 
   return [createWant, loading]

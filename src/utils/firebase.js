@@ -17,3 +17,5 @@ export const firebaseConfig = {
 // db.settings({ timestampsInSnapshots: true })
 
 // export { auth, db }
+
+
