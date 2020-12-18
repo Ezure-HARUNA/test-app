@@ -37,7 +37,7 @@ const Text = styled(ListItemText)`
   }
 `
 
-const Task = ({ want }) => {
+const Task = ({ want}) => {
 
   const [wants, setWants] = useState([])
   const [getWant, loading] = useGetWant()
@@ -55,7 +55,7 @@ const Task = ({ want }) => {
             {`${want.text} `}
           </Typography>
           <Typography variant={'caption'}>
-            {want.updatedAt.toLocaleString()}
+            {want.updatedAt.toDate().toLocaleString()}
           </Typography>
         </List>
       

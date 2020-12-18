@@ -13,7 +13,7 @@ const StyledTextField = styled(TextField)`
 const AddButton = styled(Button)`
   && {
     margin: 5px;
-  }
+  }aaaaa
 `
 
 const Form = () => {
@@ -22,22 +22,22 @@ const Form = () => {
     const [text, setText] = useState('')
 
     const handleChange = (e) => {
-      createWant(text)
+      // createWant({text})
       console.log(e.target.value)
-      setText({value: e.target.value})
+      setText(e.target.value)
       // myContext.setWantTodo(e.target.value)
     }
 
     const handleClick = (e) => {
       // createWant({text: text.value} )
-      createWant({text: text.value} )
+      createWant({text} )
       // myContext.setWantTodo(e.target.value)
     }
 
     return (
       <form onSubmit={(e) => e.preventDefault()}>
           <StyledTextField
-            value={text}
+            // value={text}
             label="やること" 
             onChange={handleChange}
             type="text"

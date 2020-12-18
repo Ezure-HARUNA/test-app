@@ -5,17 +5,17 @@ import { useState, useMemo, useContext } from 'react'
 export const useCreateWant = () => {
   const [loading, setLoading] = useState(false)
   const [want, setWant] = useState([]);
+  
 //   const  currentUser  = useContext(AuthContext)
 
 
-  const createWant = async ({ text, updatedAt, createdAt, isComplete, description, purpose, rewards, category }) => {
+  const createWant = async ({ text, updatedAt, isComplete, purpose, rewards }) => {
     if (loading) return
 
     setLoading(true)
 
     const now = firestore.Timestamp.now()
-
-   
+    
 
    
     //!➀スレッドを追加する
@@ -25,17 +25,18 @@ export const useCreateWant = () => {
     //docIdは取れている
     const docId = firestore().collection('wants').doc().id
     const result = await wantRef.get()
-    console.log(result)
-    console.log(result.data())
-    console.log(docId)
-    console.log(text)
-    //undefined
-   console.log(updatedAt)
-   //undefined
-   console.log(isComplete)
-   //undefined
-   console.log(purpose)
-   console.log(wantRef)
+  //   console.log(result)
+  //   console.log(result.data())
+  //   console.log(docId)
+  //   console.log(text)
+  //   //undefined
+  //  console.log(updatedAt)
+  //  //undefined
+  //  console.log(isComplete)
+  //  //undefined
+  //  console.log(purpose)
+  //  console.log(wantRef)
+    // console.log(wantRef.get('isComplete'))
     // const wantRef = useMemo(() => {
     //   const col = firestore().collection('wants').doc()
   
@@ -65,7 +66,7 @@ export const useCreateWant = () => {
     //   createdAt: now,
       updatedAt: now,
     // test:'test'
-    text: "text",
+    text: text,
     // isComplete: false,
     isComplete: "isComplete",
     // purpose: purpose,
@@ -77,7 +78,7 @@ export const useCreateWant = () => {
 
     setLoading(false)
 
-    // return result.data()
+    return result.data()
   }
 
   return [createWant, loading]

@@ -6,7 +6,7 @@ import { useState } from 'react'
 export const useGetWant = () => {
   const [loading, setLoading] = useState(false)
 
-  const getWant = async (id) => {
+  const getWant = async ({id, text, updatedAt}) => {
     if (loading) return
 
     setLoading(true)
@@ -31,7 +31,7 @@ export const useGetWant = () => {
       updatedAt: now,
       // threadId: wantRef.id,
       // username: "name",
-      text: "text",
+      text,
     })
 
     setLoading(false)
