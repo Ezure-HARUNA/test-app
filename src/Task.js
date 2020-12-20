@@ -5,12 +5,14 @@ import {
   ListItemSecondaryAction,
   Divider,
   List,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core'
 import styled from 'styled-components'
 import { firestore } from 'firebase/app'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import {useGetWant} from './helpers/useGetWant'
+import { useDeleteWant } from './helpers/useDeleteWant'
 
 const Contents = styled.div`
   & {
@@ -41,11 +43,26 @@ const Task = ({ want}) => {
 
   const [wants, setWants] = useState([])
   const [getWant, loading] = useGetWant()
+  // const { deleteWant } = useDeleteWant()
 
   //以下２行コメントアウト
   // const query = firestore().collection('wants').orderBy('updatedAt', 'text')
 
   // const [wants = [], loading] = useCollectionData(query, { idField: 'id' })
+
+  const deleteWant = firestore().collection('wants');
+  console.log(deleteWant);
+  console.log(deleteWant.doc())
+
+  const handleDelete = (e) => {
+    // createWant({text: text.value} )
+    if(window.confirm('削除しますか？')) {
+      deleteWant.doc(e.target.value).delete();
+
+    }
+    
+    // myContext.setWantTodo(e.target.value)
+  }
 
   return (
     <div>
@@ -57,6 +74,14 @@ const Task = ({ want}) => {
           <Typography variant={'caption'}>
             {want.updatedAt.toDate().toLocaleString()}
           </Typography>
+        
+          <ListItemSecondaryAction>
+            <Button 
+              color="danger" 
+              onClick={handleDelete}>
+                削除
+            </Button>
+          </ListItemSecondaryAction>
         </List>
       
     </div>

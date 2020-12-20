@@ -60,7 +60,7 @@ export const useCreateWant = () => {
 
 
     //データを追加
-    await wantRef.set({
+    await firestore().collection('wants').doc(docId).set({
     // docId: docId,
     docId: "docId",
     //   createdAt: now,
@@ -75,6 +75,8 @@ export const useCreateWant = () => {
     rewards: "rewards",
     // category: category,
     })
+
+
 
     setLoading(false)
 
