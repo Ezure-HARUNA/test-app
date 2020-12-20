@@ -51,13 +51,14 @@ const Task = ({ want}) => {
   // const [wants = [], loading] = useCollectionData(query, { idField: 'id' })
 
   const deleteWant = firestore().collection('wants');
+  const docId = firestore().collection('wants').doc().id
   console.log(deleteWant);
   console.log(deleteWant.doc())
 
   const handleDelete = (e) => {
     // createWant({text: text.value} )
     if(window.confirm('削除しますか？')) {
-      deleteWant.doc(e.target.value).delete();
+      deleteWant.doc(docId).delete();
 
     }
     
