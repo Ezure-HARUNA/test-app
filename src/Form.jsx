@@ -30,7 +30,8 @@ const Form = () => {
 
     const handleClick = (e) => {
       // createWant({text: text.value} )
-      createWant({text} )
+      createWant({text})
+     
       // myContext.setWantTodo(e.target.value)
     }
 

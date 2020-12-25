@@ -13,10 +13,10 @@ export const useGetWant = () => {
 
     const now = firestore.Timestamp.now()
 
-    //!➀スレッドを追加する
-    const wantRef = firestore().collection('wants').doc()
-    const docId = firestore().collection('wants').doc().id
+    //複数取る
+    const wantRef = firestore().collection('wants')
     const result = await wantRef.get()
+    console.log(result)
     console.log(result.data())
 
 
@@ -24,15 +24,15 @@ export const useGetWant = () => {
     //レスポンスを追加する
     // const Ref = threadRef.collection('responses').doc()
 
-    // //!➁データを追加
-    await wantRef.add({
-      // docId: docId,
-      // createdAt: now,
-      updatedAt: now,
-      // threadId: wantRef.id,
-      // username: "name",
-      text,
-    })
+    // //!➁データを読み込む
+    // await result({
+    //   // docId: docId,
+    //   // createdAt: now,
+    //   updatedAt: now,
+    //   // threadId: wantRef.id,
+    //   // username: "name",
+    //   text,
+    // })
 
     setLoading(false)
     

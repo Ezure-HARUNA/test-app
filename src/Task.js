@@ -11,8 +11,18 @@ import {
 import styled from 'styled-components'
 import { firestore } from 'firebase/app'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import {useGetWant} from './helpers/useGetWant'
+// import {useGetWant} from './helpers/useGetWant'
 import { useDeleteWant } from './helpers/useDeleteWant'
+import { useCreateWant } from './helpers/useCreateWant'
+import { useUpdateWant } from './helpers/useUpdateWant'
+import {Link} from 'react-router-dom'
+
+const Div =styled.div`
+  display: flex!important;
+`
+
+const Button1 = styled(Button)`
+margin-right: 40px!important;`
 
 const Contents = styled.div`
   & {
@@ -39,36 +49,44 @@ const Text = styled(ListItemText)`
   }
 `
 
-const Task = ({ want}) => {
+const Task = ({ want}, props) => {
 
   const [wants, setWants] = useState([])
-  const [getWant, loading] = useGetWant()
-  // const { deleteWant } = useDeleteWant()
+  // const [getWant, loading] = useGetWant()
+  // const [createWant] = useCreateWant()
+  const [ deleteWant ] = useDeleteWant()
+  const [ createWant ] = useCreateWant()
+  const [text, setText] = useState('')
+
+  
+
+ 
 
   //以下２行コメントアウト
   // const query = firestore().collection('wants').orderBy('updatedAt', 'text')
 
   // const [wants = [], loading] = useCollectionData(query, { idField: 'id' })
 
-  const deleteWant = firestore().collection('wants');
-  const docId = firestore().collection('wants').doc().id
-  console.log(deleteWant);
-  console.log(deleteWant.doc())
+  // const deleteWant = firestore().collection('wants');
+  // const docId = firestore().collection('wants').doc().id
+  // console.log(deleteWant);
+  // console.log(deleteWant.doc())
 
   const handleDelete = (e) => {
     // createWant({text: text.value} )
     if(window.confirm('削除しますか？')) {
-      deleteWant.doc(docId).delete();
+      deleteWant({text})
 
     }
     
     // myContext.setWantTodo(e.target.value)
   }
 
+  
+
   return (
     <div>
-      
-        <List>
+      <List>
            <Typography variant={'h6'}>
             {`${want.text} `}
           </Typography>
@@ -76,15 +94,26 @@ const Task = ({ want}) => {
             {want.updatedAt.toDate().toLocaleString()}
           </Typography>
         
+        <Div>
           <ListItemSecondaryAction>
-            <Button 
+            <Button1 
               color="danger" 
               onClick={handleDelete}>
                 削除
-            </Button>
+            </Button1>
           </ListItemSecondaryAction>
-        </List>
-      
+     
+        <ListItemSecondaryAction>
+          <Link className="link" to='/edit'>
+            <Button 
+              color="danger" 
+              onClick={props.handleUpdate}>
+                編集
+            </Button>
+          </Link>
+        </ListItemSecondaryAction>
+        </Div>
+      </List>
     </div>
   )
 }

@@ -2,14 +2,14 @@ import { firestore } from 'firebase/app'
 import { useState, useMemo, useContext } from 'react'
 // import { AuthContext } from '../contexts/auth'
 
-export const useCreateWant = () => {
+export const useUpdateWant = () => {
   const [loading, setLoading] = useState(false)
   const [want, setWant] = useState([]);
   
 //   const  currentUser  = useContext(AuthContext)
 
 
-  const createWant = async ({ text, updatedAt, isComplete, purpose, rewards }) => {
+  const updateWant = async ({ text, docId, updatedAt, isComplete, purpose, rewards }) => {
     if (loading) return
 
     setLoading(true)
@@ -21,11 +21,10 @@ export const useCreateWant = () => {
 
     //追加
     //docIdは取れている
-    const docId = firestore().collection('wants').doc().id
     const result = await wantRef.get()
   //   console.log(result)
   //   console.log(result.data())
-  //   console.log(docId)
+    // console.log(docId)
   //   console.log(text)
   //   //undefined
   //  console.log(updatedAt)
@@ -45,22 +44,13 @@ export const useCreateWant = () => {
     //   })
   
     //   return col
-    // }, [])
-
-    
-
-    //コメントアウト
-    // wantRef.where('uid', '==', currentUser.uid).onSnapshot(query => {
-    //   const data = []
-    //   query.forEach(d => data.push({ ...d.data(), docId: d.id }))
-    //   setWant(data)
-    // })
+    // }, []
 
 
     //データを追加
-    await firestore().collection('wants').doc(docId).set({
+    await firestore().collection('wants').doc(docId).update({
     // docId: docId,
-    docId: docId,
+    docId: firestore().collection('wants').doc().id,
     //   createdAt: now,
       updatedAt: now,
     // test:'test'
@@ -81,5 +71,5 @@ export const useCreateWant = () => {
     return result.data()
   }
 
-  return [createWant, loading]
+  return [updateWant, loading]
 }
