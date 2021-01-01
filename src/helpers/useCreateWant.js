@@ -9,7 +9,7 @@ export const useCreateWant = () => {
 //   const  currentUser  = useContext(AuthContext)
 
 
-  const createWant = async ({ text, updatedAt, isComplete, purpose, rewards }) => {
+  const createWant = async ({ text, updatedAt, isComplete, purpose, rewards}) => {
     if (loading) return
 
     setLoading(true)

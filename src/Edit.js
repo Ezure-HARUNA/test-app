@@ -4,21 +4,20 @@ import { useUpdateWant } from './helpers/useUpdateWant'
 
 const Edit = props => {
   const [text, setText ] = useState('')
-  const [ user, setUser ] = useState(props.currentUser)
-  const [ createWant ] = useCreateWant()
+  const docId  =  'aaa';
   const [ updateWant ] = useUpdateWant()
 
-  useEffect(
-    () => {
-      setUser(props.currentUser)
-    },
-    [ props ]
-  )
-  // You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
+  // useEffect(
+  //   () => {
+  //     setUser(props.currentUser)
+  //     console.log('setUser')
+  //   },
 
-  const handleInputChange = e => {
-     props.getWant()
-  }
+  //   [ props ]
+  // )
+
+
+  // You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
   
   const handleClick = () => {
     updateWant({docId, text})
@@ -35,7 +34,7 @@ const Edit = props => {
       }}
     >
       <label>text</label>
-      <input type="text" name="name" value={props.text} onChange={handleInputChange} />
+      <input type="text" name="name" value={props.text} />
       
       <button onClick={handleClick}>update text</button>
       <button onClick={() => props.setEditing(false)} className="button muted-button">

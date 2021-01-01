@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Form from './Form'
 import Task from './Task'
@@ -23,17 +23,17 @@ const App = () => {
   const query = firestore().collection('wants').orderBy('updatedAt', 'desc')
 
   const [wants = [], loading] = useCollectionData(query, { docId: 'id' })
-  // const [ getWant ] = useGetWant()
+  const [ getWant ] = useGetWant()
   const [ createWant ] = useCreateWant()
   const [ updateWant ] = useUpdateWant()
   const [text, setText] = useState('')
   const [ editing, setEditing ] = useState(false)
 
-  const getWant = useEffect(() => {
-    () => {
-      useGetWant()
-    }
-  }, [])
+  // const getWant = useEffect(() => {
+    
+  //     getWant()
+    
+  // }, [])
 
    const editRow = user => {
 		setEditing(true)
