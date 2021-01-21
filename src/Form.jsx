@@ -37,7 +37,7 @@ const Form = () => {
     return (
       <form onSubmit={(e) => e.preventDefault()}>
           <StyledTextField
-            // value={text}
+            value={text}
             label="やること" 
             onChange={handleChange}
             type="text"
