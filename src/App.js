@@ -1,35 +1,45 @@
-import React from 'react'
-import Form from './Form'
-import Task from './Task'
-import firebase from 'firebase';
-import "firebase/auth";
-import { initializeApp } from '../src/utils/firebase'
-import Progress from './Progress'
-import { firestore } from 'firebase/app';
+import React, { Component } from 'react';
+import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import firebase from './utils/firebase';
 
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { loggined, logouted } from './actions/auth';
+import history from './history';
+import LandingPage from './LandingPage';
+import LoginedPage from './LoginedPage';
+import NavBar from './NavBar';
+import Auth from './Auth';
 
-// firebase.initializeApp(initializeApp);
-// export const auth = firebase.auth()
-// export const db = firebase.firestore()
-
-const App = () => {
-
-  const query = firestore().collection('wants').orderBy('updatedAt', 'desc')
-
-  const [wants = [], loading] = useCollectionData(query, { docId: 'id' })
-  
-  return (
-    <div>
-      <Form/>
-      {/* <Task/> */}
-      {wants.map((want) => (
-        <Task key={want.id} want={want} />
-      ))}
-      {loading && <Progress />}
-    </div>
-  )
+class App extends Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // ログイン処理
+        this.props.loggined();
+        console.log('loginしました');
+      } else {
+        // ログアウト処理
+        this.props.logouted();
+      }
+    });
+  }
+  render() {
+    return (
+      <Router history={history}>
+        <NavBar />
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Auth>
+            <Route path="/logined" exact component={LoginedPage} />
+          </Auth>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default App
+const mapStateToProps = state => {
+  return { isLoggedIn: state.auth.isLoggedIn };
+};
 
+export default connect(mapStateToProps, { loggined, logouted })(App);
