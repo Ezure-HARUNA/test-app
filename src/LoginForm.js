@@ -45,17 +45,17 @@ class LoginForm extends Component {
     firebase.auth().signInWithRedirect(provider);
   };
 
-//   facebookLogin = () => {
-//     // フェイスブックログイン処理
-//     const provider = new firebase.auth.FacebookAuthProvider();
-//     firebase.auth().signInWithRedirect(provider);
-//   };
+  facebookLogin = () => {
+    // フェイスブックログイン処理
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  };
 
-//   twitterLogin = () => {
-//     // ツイッターログイン処理
-//     const provider = new firebase.auth.TwitterAuthProvider();
-//     firebase.auth().signInWithRedirect(provider);
-//   };
+  twitterLogin = () => {
+    // ツイッターログイン処理
+    const provider = new firebase.auth.TwitterAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  };
 
   renderErrorMessage = () => {
     // エラーメッセージ
@@ -79,12 +79,12 @@ class LoginForm extends Component {
         <GoogleLoginButton onClick={this.googleLogin} align="center" iconSize={'20'} size={'40'}>
           <span style={{ fontSize: 16 }}>Googleで{this.props.formText}</span>
         </GoogleLoginButton>
-        {/* <TwitterLoginButton onClick={this.twitterLogin} align="center" iconSize={'20'} size={'40'}>
+        <TwitterLoginButton onClick={this.twitterLogin} align="center" iconSize={'20'} size={'40'}>
           <span style={{ fontSize: 16 }}>Twitterで{this.props.formText}</span>
         </TwitterLoginButton>
         <FacebookLoginButton onClick={this.facebookLogin} align="center" iconSize={'20'} size={'40'}>
           <span style={{ fontSize: 16 }}>Facebookで{this.props.formText}</span>
-        </FacebookLoginButton> */}
+        </FacebookLoginButton>
         <div style={{ textAlign: 'center', marginTop: 20 }}>または</div>
         <form style={{ textAlign: 'center' }} noValidate autoComplete="off">
           <div>

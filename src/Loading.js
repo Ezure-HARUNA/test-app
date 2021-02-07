@@ -7,7 +7,7 @@ const Contents = styled.div`
     width: 100%;
     height: 100%;
     background-color: #eee;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5p 15px rgba(0, 0, 0, 0.3);
     padding: 10px;
     display: flex;
     justify-content: center;
